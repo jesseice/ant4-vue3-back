@@ -14,3 +14,7 @@ pnpm run dev
 ## 目录结构
 
 看名知其意
+
+## 截图
+
+![Alt text](./src/assets/1.png)
