@@ -17,7 +17,12 @@ const routes = [
   {
     path: "/",
     name: "/",
-    redirect: "/home",
+    redirect: "/components",
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login/index.vue"),
   },
   ...asyncRouterList,
 ];

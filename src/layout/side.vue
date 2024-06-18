@@ -29,7 +29,7 @@ import { asyncRouterList } from "@/router";
 import { ItemType } from "ant-design-vue/es/menu/src/interface";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons-vue";
 import { setConfigStore } from "@/store";
-import { createdIcon } from "./utils";
+import { createdIcon, winSizeChangeExpand } from "./utils";
 const router = useRouter();
 const setStore = setConfigStore();
 const createItem = (item: any, parentPath?: string): ItemType => {
@@ -44,7 +44,7 @@ const createItem = (item: any, parentPath?: string): ItemType => {
     children: item.children?.map((item) => createItem(item, path)),
   };
 };
-const menuItems = computed(() =>
+const menuItems: any = computed(() =>
   asyncRouterList.map((item) => createItem(item))
 );
 const state = reactive<{
@@ -56,6 +56,7 @@ const state = reactive<{
 });
 
 const activePaths = computed(() => router.currentRoute.value.path);
+winSizeChangeExpand({ setStore });
 
 onMounted(() => {
   // @ts-ignore

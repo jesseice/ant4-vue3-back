@@ -39,14 +39,14 @@ import {
   UserOutlined,
 } from "@ant-design/icons-vue";
 const visible = ref(false);
-
+const router = useRouter();
 const dropdownItems = [
   {
     key: "1",
     label: "退出登录",
     icon: LogoutOutlined,
     onClick: () => {
-      alert("退出登录");
+      router.push("/login");
     },
   },
 ];
