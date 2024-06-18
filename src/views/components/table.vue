@@ -3,6 +3,7 @@
     <a-table
       :columns="columns"
       :data-source="data"
+      :pagination="{ pageSize: 30 }"
       class="components-table-demo-nested"
     >
       <template #bodyCell="{ column }">

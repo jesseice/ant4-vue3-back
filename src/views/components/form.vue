@@ -130,7 +130,7 @@ const onSubmit = () => {
     .then(() => {
       console.log("values", formState, toRaw(formState));
     })
-    .catch((error) => {
+    .catch((error: any) => {
       console.log("error", error);
     });
 };

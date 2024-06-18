@@ -6,13 +6,12 @@
         alt=""
         style="width: 40px; height: 40px"
       />
-      <span v-if="!setStore.sidebar.collapsed" style="color: #fff">AVB_</span>
+      <span v-if="!setStore.sidebar.collapsed">ANB</span>
     </div>
     <div class="side-menu">
       <a-menu
         v-model:selectedKeys="state.selectedKeys"
         v-model:openKeys="state.openKeys"
-        theme="dark"
         mode="inline"
         :items="menuItems"
         @click="menuClick"
@@ -78,30 +77,35 @@ const expandMenu = () => {
 </script>
 <style lang="less" scoped>
 .c-side {
-  height: 100vh;
+  overflow: hidden;
   border-right: 1px solid #f2f2f2;
-  color: #fff;
+
+  box-sizing: border-box;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 0 3px;
   .side-logo {
     height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 40px;
+    gap: 10px;
     span {
       font-weight: 700;
       font-size: 20px;
-      margin-left: 20px;
     }
   }
   .side-menu {
-    height: calc(100vh - 64px - 40px);
+    height: calc(100% - 64px - 40px);
     box-sizing: border-box;
+    &:deep(.ant-menu) {
+      border-inline-end: none;
+    }
   }
   .side-footer {
     height: 40px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    line-height: 40px;
+    text-align: center;
     cursor: pointer;
   }
 }

@@ -11,7 +11,6 @@
       <a-layout-content :style="contentStyle">
         <router-view></router-view>
       </a-layout-content>
-      <!-- <a-layout-footer :style="footerStyle">Footer</a-layout-footer> -->
     </a-layout>
   </a-layout>
 </template>
@@ -23,19 +22,22 @@ import { setConfigStore } from "@/store";
 const setStore = setConfigStore();
 
 const siderStyle: CSSProperties = {
-  // backgroundColor: "#fff",
+  backgroundColor: "#F5F5F5",
+  padding: "10px",
+  boxSizing: "border-box",
+  height: "100vh",
 };
 const headerStyle: CSSProperties = {
-  backgroundColor: "#fff",
-  height: "64px",
+  backgroundColor: "#F5F5F5",
+  height: "74px",
+  marginBottom: "10px",
+  padding: "10px 0 0",
+  boxSizing: "border-box",
 };
 const contentStyle: CSSProperties = {
-  padding: "10px 0 0 10px",
-  height: `calc(100vh - ${headerStyle.height})`,
+  backgroundColor: "#F5F5F5",
+  height: `calc(100vh - ${headerStyle.height} - ${headerStyle.marginBottom})`,
   boxSizing: "border-box",
   overflowY: "auto",
-};
-const footerStyle: CSSProperties = {
-  // backgroundColor: "red",
 };
 </script>

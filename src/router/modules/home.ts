@@ -1,10 +1,10 @@
 import BasicLayout from "@/layout/index.vue";
-import { HomeOutlined } from "@ant-design/icons-vue";
+import { CodepenOutlined } from "@ant-design/icons-vue";
 export default [
   {
     path: "/home",
     name: "home",
-    meta: { title: "主页", icon: HomeOutlined },
+    meta: { title: "组件", icon: CodepenOutlined },
     component: BasicLayout,
     redirect: "/home/index",
     children: [
@@ -12,19 +12,13 @@ export default [
         path: "index",
         name: "homeindex",
         meta: { title: "表格" },
-        component: () => import("@/views/table/index.vue"),
+        component: () => import("@/views/components/form.vue"),
       },
       {
         path: "home1",
         name: "home1",
         meta: { title: "表单" },
-        component: () => import("@/views/form/index.vue"),
-      },
-      {
-        path: "home2",
-        name: "home2",
-        meta: { title: "2页" },
-        component: () => import("@/views/home_2.vue"),
+        component: () => import("@/views/components/table.vue"),
       },
     ],
   },

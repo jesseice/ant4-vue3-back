@@ -9,12 +9,12 @@
       </a-col>
       <a-col :span="16"></a-col>
       <a-col :span="4">
-        <UserOutlined />
         <a-dropdown v-model:open="visible" :trigger="['click']">
-          <a class="ant-dropdown-link" @click.prevent>
+          <a-button type="text" class="ant-dropdown-link" @click.prevent>
+            <UserOutlined />
             管理员
             <DownOutlined />
-          </a>
+          </a-button>
           <template #overlay>
             <a-menu>
               <a-menu-item
@@ -51,3 +51,10 @@ const dropdownItems = [
   },
 ];
 </script>
+<style scoped>
+.c-header {
+  background-color: #fff;
+  border-radius: 20px 0 0 20px;
+  height: 100%;
+}
+</style>
