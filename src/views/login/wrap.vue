@@ -5,58 +5,102 @@
       <div>WELCOME!</div>
     </div>
     <div class="content">
-      <a-form :model="formData">
-        <a-form-item>
-          <a-input v-model:value="formData.username" placeholder="请输入账号">
+      <a-form :model="formData" ref="form" :rules="rules">
+        <a-form-item name="username">
+          <a-input
+            v-model:value="formData.username"
+            placeholder="请输入账号"
+            @press-enter="login"
+          >
             <template #prefix> <UserOutlined />&nbsp;&nbsp;|&nbsp;</template>
           </a-input>
         </a-form-item>
-        <a-form-item>
+        <a-form-item name="password" style="margin: 0">
           <a-input-password
             v-model:value="formData.password"
             placeholder="请输入密码"
+            @press-enter="login"
           >
             <template #prefix>
               <LockOutlined />&nbsp;&nbsp;|&nbsp;
               <!-- <UnlockOutlined /> -->
             </template>
           </a-input-password>
-          <div style="text-align: right; margin-top: 10px">
-            <a-checkbox v-model:checked="remenber">记住密码</a-checkbox>
-          </div>
         </a-form-item>
       </a-form>
+      <div style="text-align: right; margin-top: 8px">
+        <a-checkbox v-model:checked="remenber">记住密码</a-checkbox>
+      </div>
     </div>
-    <a-button type="primary" block @click="login" style="margin-top: 8px">
+    <a-button
+      type="primary"
+      block
+      :loading="loginLoading"
+      style="margin-top: 24px"
+      @click="login"
+    >
       登录
     </a-button>
   </div>
 </template>
 <script lang="ts" setup>
-import {
-  UserOutlined,
-  LockOutlined,
-  UnlockOutlined,
-} from "@ant-design/icons-vue";
-const formData = reactive({
+import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import { REMENBER_PASSWORD } from "@/utils/global";
+const router = useRouter();
+const form: any = ref(null);
+const formData = ref({
   username: undefined,
   password: undefined,
 });
+
 const remenber = ref(false);
-const login = () => {
-  console.log("[formData] ---> ", formData);
+const loginLoading = ref(false);
+
+const rules = {
+  username: [{ required: true, message: "请输入账号!" }],
+  password: [{ required: true, message: "请输入密码!" }],
+};
+
+onMounted(() => {
+  const remenberData = JSON.parse(
+    localStorage.getItem(REMENBER_PASSWORD) || "{}"
+  );
+  if (Object.keys(remenberData).length) {
+    formData.value = remenberData;
+  }
+});
+
+const login = async () => {
+  try {
+    await form.value.validate();
+    loginLoading.value = true;
+    // TODO 登录操作
+    await new Promise((resolve) => setTimeout(() => resolve(1), 2000));
+
+    //
+    if (remenber.value) {
+      localStorage.setItem(REMENBER_PASSWORD, JSON.stringify(formData.value));
+    }
+    router.push("/");
+  } catch (error) {
+    console.log("[error] ---> ", error);
+  } finally {
+    loginLoading.value = false;
+  }
 };
 </script>
 <style lang="less" scoped>
 .wrap {
-  margin: 10px;
-  border: 1px solid #f2f2f2;
-
-  width: 288.6px;
-  height: 360.6px;
+  position: absolute;
+  right: 89px;
+  top: 129px;
+  width: 261px;
+  height: 324px;
   backdrop-filter: blur(24px);
   padding: 33.5px 29px 75.6px;
   box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #eff6ff;
 
   .title {
     text-align: center;
@@ -77,6 +121,12 @@ const login = () => {
   }
   .content {
     &:deep(.ant-input-prefix),
+    &:deep(.ant-form-item:nth-of-type(2)) {
+      margin: 0;
+    }
+    &:deep(.ant-input-prefix) {
+      color: rgba(7, 40, 185, 1);
+    }
     &:deep(input::placeholder) {
       color: rgba(7, 40, 185, 1);
     }
@@ -86,8 +136,25 @@ const login = () => {
       line-height: 17.38px;
       color: rgba(7, 40, 185, 1);
     }
-  }
-  .footer {
+    &:deep(input) {
+      color: rgba(7, 40, 185, 1);
+      background-color: #dde8ff;
+    }
+    &:deep(.ant-checkbox-inner) {
+      width: 13px;
+      height: 13px;
+    }
+    &:deep(.ant-checkbox-wrapper) {
+      font-size: 12px;
+      color: rgba(7, 40, 185, 1);
+    }
+    &:deep(.ant-input-affix-wrapper) {
+      border: 1px solid rgba(7, 40, 185, 1);
+      background-color: #dde8ff;
+    }
+    &:deep(.ant-form-item-explain-error) {
+      font-size: 12px;
+    }
   }
 }
 </style>

@@ -38,8 +38,10 @@ declare module 'vue' {
     ASwitch: typeof import('ant-design-vue/es')['Switch']
     ATable: typeof import('ant-design-vue/es')['Table']
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
+    CombineTable: typeof import('./src/components/combineTable/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchForm: typeof import('./src/components/combineTable/searchForm.vue')['default']
     Test: typeof import('./src/components/test.vue')['default']
   }
 }

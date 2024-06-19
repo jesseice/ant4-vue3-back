@@ -5,7 +5,7 @@
         :span="4"
         style="display: flex; align-items: center; justify-content: center"
       >
-        <a-input-search placeholder="input search text" style="width: 200px" />
+        <!-- <a-input-search placeholder="input search text" style="width: 200px" /> -->
       </a-col>
       <a-col :span="16"></a-col>
       <a-col :span="4">

@@ -17,14 +17,19 @@ const routes = [
   {
     path: "/",
     name: "/",
-    redirect: "/components",
+    redirect: asyncRouterList[0].path,
   },
+  ...asyncRouterList,
   {
     path: "/login",
     name: "login",
     component: () => import("@/views/login/index.vue"),
   },
-  ...asyncRouterList,
+  {
+    path: "/:catchAll(.*)*",
+    name: "404",
+    component: () => import('@/views/result/404.vue')
+  },
 ];
 
 const router = createRouter({
