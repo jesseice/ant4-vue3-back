@@ -28,7 +28,7 @@ const routes = [
   {
     path: "/:catchAll(.*)*",
     name: "404",
-    component: () => import('@/views/result/404.vue')
+    component: () => import("@/views/result/404.vue"),
   },
 ];
 
@@ -38,6 +38,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  // TODO 各种操作
   next();
 });
 
