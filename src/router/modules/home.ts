@@ -11,20 +11,8 @@ export default [
       {
         path: "table",
         name: "table",
-        meta: { title: "组件表格" },
-        component: () => import("@/views/components/table.vue"),
-      },
-      {
-        path: "ctable",
-        name: "ctable",
         meta: { title: "通用表格" },
         component: () => import("@/views/components/customTable/index.vue"),
-      },
-      {
-        path: "form",
-        name: "form",
-        meta: { title: "表单" },
-        component: () => import("@/views/components/form.vue"),
       },
     ],
   },

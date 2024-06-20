@@ -77,7 +77,6 @@ declare namespace CustomerForm {
     | 'confirmPassword'
     | 'cascader'
     | 'rangeInput'
-    | 'btnRangePicker';
 
   interface FormItemProps {
     /** label */

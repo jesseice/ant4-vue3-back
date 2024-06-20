@@ -1,5 +1,5 @@
 <template>
-  <CombineTable :columns="columns" :request="request">
+  <CombineTable :columns="columns" :request="request" isRow>
     <template #bodyCell="{ record, column }">
       <template v-if="column.dataIndex === 'operation'">
         <a @click="copyText(record.name)">复制</a>

@@ -14,7 +14,7 @@ interface UseSearchParams {
   pagination?: PaginationProps;
   extraParams?: Record<string, string | number | boolean>;
 }
-const initPageSizeOptions = [20, 30, 50, 100];
+const initPageSizeOptions = ["20", "30", "50", "100"];
 
 export default (params: UseSearchParams) => {
   const { request, pagination = {}, extraParams } = params;
@@ -25,10 +25,11 @@ export default (params: UseSearchParams) => {
     searchParams: {},
     pagination: {
       current: 1,
-      pageSize: initPageSizeOptions[0],
+      pageSize: Number(initPageSizeOptions[0]),
       total: 0,
       showQuickJumper: true,
       pageSizeOptions: initPageSizeOptions,
+      showTotal: (total) => `共 ${total} 条`,
       onChange: (...args) => pageChange(...args),
       ...pagination,
     },
@@ -58,7 +59,7 @@ export default (params: UseSearchParams) => {
 
   // 处理日期
   const processDate = (params: Record<string, any>) => {
-    const resultObj: Record<string, string> = {};
+    const resultObj: Record<string, string | number> = {};
     if (!isObject(params)) return params;
     for (const key in params) {
       if (!isArray(params[key])) {
@@ -68,8 +69,8 @@ export default (params: UseSearchParams) => {
         const hasDate = dayjs(listVal).isValid();
         if (hasDate) {
           const [start, end] = params[key];
-          resultObj[`${key}Start`] = dayjs(start).startOf("day").toString();
-          resultObj[`${key}End`] = dayjs(end).endOf("day").toString();
+          resultObj[`${key}Start`] = dayjs(start).startOf("day").valueOf();
+          resultObj[`${key}End`] = dayjs(end).endOf("day").valueOf();
         }
       }
     }
@@ -84,7 +85,7 @@ export default (params: UseSearchParams) => {
       // 处理请求参数
       const parseParams = JSON.parse(JSON.stringify(state.searchParams));
       const searchParams = clearSpace(processDate(getNonEmpty(parseParams)));
-
+      console.log("[searchParams] ---> ", searchParams);
       // 发送请求 TODO 根据接口修改
       const response = await request({
         pageNum: state.pagination.current,
@@ -126,7 +127,7 @@ export default (params: UseSearchParams) => {
   const resetSearch = async () => {
     state.searchParams = {};
     state.pagination.current = 1;
-    state.pagination.pageSize = initPageSizeOptions[0];
+    state.pagination.pageSize = Number(initPageSizeOptions[0]);
     await requestData();
   };
 

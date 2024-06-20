@@ -7,8 +7,6 @@ declare namespace Combine {
     hideInSearch?: boolean;
     /** 在表格中隐藏 */
     hideInTable?: boolean;
-    /** 是否是日期 */
-    hasDate?: boolean;
 
     // 组件库
     /** 列标识 */
@@ -23,6 +21,7 @@ declare namespace Combine {
     fixed?: "left" | "right" | boolean;
     /** 宽度 */
     width?: string | number;
+    /** 其他属性查看 https://next.antdv.com/components/table-cn#column */
     [key: string]: any;
   }
   // eslint-disable-next-line
