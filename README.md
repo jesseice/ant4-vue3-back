@@ -1,6 +1,7 @@
 ## 轻量级框架
-
-移除权限、框架主题等功能、保持扩展性，再需要什么功能的时再进行扩展
+Vue3 + Vite5 + Andv4 + Pinia + VueRouter + Axios
+可以作为项目的启动框架
+常用数据展示的组件
 
 ## 启动
 
@@ -17,4 +18,5 @@ pnpm run dev
 
 ## 截图
 
-![Alt text](./src/assets/1.png)
+![登录](./src/assets/1.png)
+![主页面](./src/assets/2.png)
