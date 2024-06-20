@@ -11,7 +11,7 @@
 import CombineTable from "@/components/combineTable/index.vue";
 import { columns } from "./_config";
 import { copyText } from "@/utils";
-
+// 
 interface DataItem {
   key: number;
   name: string;
